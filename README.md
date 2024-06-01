@@ -1,6 +1,6 @@
 g++ -std=c++11 -O3 index_sdg.cpp -o sdg
 
-# construct neighbor bridge graph
+#construct neighbor bridge graph
 
 ./sdg data/NY.data data/NY.idx
 
