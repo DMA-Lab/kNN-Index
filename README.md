@@ -1,9 +1,13 @@
+#compile index_sdg.cpp for building neighbor bridge graph
+
 g++ -std=c++11 -O3 index_sdg.cpp -o sdg
+
 
 #construct neighbor bridge graph
 
 ./sdg data/NY.data data/NY.idx
 
+#compile index_sdg.cpp for knn queries and updating objects
 
 g++ -std=c++11 -O3 query_up.cpp -o qu
 
