@@ -4,7 +4,7 @@ This project implements the KNN algorithms for the following paper:
 
 ### Dataset
 
-All the datasets in this paper can be downloaded from [DIMACS](http://www.diag.uniroma1.it/~challenge9/) or [D](http://www.diag.uniroma1.it/~challenge9/download.shtml)
+All the datasets in this paper can be downloaded from [DIMACS](http://www.diag.uniroma1.it/~challenge9/download.shtml)
 
 #compile index_sdg.cpp for building neighbor bridge graph
 
