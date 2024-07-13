@@ -6,6 +6,18 @@ This project implements the KNN algorithms for the following paper:
 
 All the datasets in this paper can be downloaded from [DIMACS](http://www.diag.uniroma1.it/~challenge9/download.shtml)
 
+### Compile
+
+* compile index_sdg.cpp for building neighbor bridge graph
+  g++ -std=c++11 -O3 index_sdg.cpp -o sdg
+* compile query_up.cpp for knn queries and updating objects
+  g++ -std=c++11 -O3 query_up.cpp -o qu
+
+### Preliminary
+
+### Test
+
+
 #compile index_sdg.cpp for building neighbor bridge graph
 
 g++ -std=c++11 -O3 index_sdg.cpp -o sdg
@@ -15,7 +27,7 @@ g++ -std=c++11 -O3 index_sdg.cpp -o sdg
 
 ./sdg data/NY.data data/NY.idx
 
-#compile index_sdg.cpp for knn queries and updating objects
+#compile query_up.cpp for knn queries and updating objects
 
 g++ -std=c++11 -O3 query_up.cpp -o qu
 
