@@ -23,11 +23,13 @@ All the datasets in this paper can be downloaded from [DIMACS](http://www.diag.u
   `./sdg data/NY.data data/NY.idx`
   
 * construct knn-index and query
-
+  `./qu data/NY.idx data/NY.object -q data/NY.query pkkvc optimal 40`
+  
 * update for inserting objects into a set of candidate objects
-
+  `./qu data/NY.idx data/NY.object -u data/NY.in pkkvc optimal 40`
+  
 * update for deleting objects from a set of candidate objects
-
+  `./qu data/NY.idx data/NY.object -u data/NY.de pkkvc optimal 40`
 
 * Arguments
   * dataset: the file path to the dataset
