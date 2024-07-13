@@ -23,6 +23,7 @@ All the datasets in this paper can be downloaded from [DIMACS](http://www.diag.u
   `./sdg data/NY.data data/NY.idx`
   
 * construct knn-index and query <br>
+  `./qu sdg objectset -q queries funcs topk`
   `./qu data/NY.idx data/NY.object -q data/NY.query pkkvc optimal 40`
   
 * update for inserting objects into a set of candidate objects <br>
@@ -35,27 +36,4 @@ All the datasets in this paper can be downloaded from [DIMACS](http://www.diag.u
   * dataset: the file path to the dataset
   * xxx: the parameter
   * 
-#compile index_sdg.cpp for building neighbor bridge graph
 
-g++ -std=c++11 -O3 index_sdg.cpp -o sdg
-
-
-#construct neighbor bridge graph
-
-./sdg data/NY.data data/NY.idx
-
-#compile query_up.cpp for knn queries and updating objects
-
-g++ -std=c++11 -O3 query_up.cpp -o qu
-
-#query
-
-./qu data/NY.idx data/NY.object -q data/NY.query pkkvc optimal 40
-
-#update for insert
-
-./qu data/NY.idx data/NY.object -u data/NY.in pkkvc optimal 40
-
-#update for delete
-
-./qu data/NY.idx data/NY.object -u data/NY.de pkkvc optimal 40
