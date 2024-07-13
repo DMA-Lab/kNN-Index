@@ -9,9 +9,9 @@ All the datasets in this paper can be downloaded from [DIMACS](http://www.diag.u
 ### Compile
 
 * compile index_sdg.cpp for building neighbor bridge graph
-  g++ -std=c++11 -O3 index_sdg.cpp -o sdg
+  ... g++ -std=c++11 -O3 index_sdg.cpp -o sdg
 * compile query_up.cpp for knn queries and updating objects
-  g++ -std=c++11 -O3 query_up.cpp -o qu
+  ... g++ -std=c++11 -O3 query_up.cpp -o qu
 
 ### Preliminary
 
