@@ -1,3 +1,7 @@
+### KNN
+This project implements the KNN algorithms for the following paper:
+* Yiqi Wang, Long Yuan,  Wenjie Zhang, Xuemin Lin, Zi Chen, Qing Liu, "Simpler is More: Efficient Top-K Nearest Neighbors Search on Large Road Networks"
+
 #compile index_sdg.cpp for building neighbor bridge graph
 
 g++ -std=c++11 -O3 index_sdg.cpp -o sdg
