@@ -23,7 +23,7 @@ All the datasets in this paper can be downloaded from [DIMACS](http://www.diag.u
   `./sdg data/NY.data data/NY.idx`
   
 * construct knn-index and query <br>
-  `./qu sdg objectset -q queries funcs topk`
+  `./qu sdg objectset -q queries funcs topk` <br>
   `./qu data/NY.idx data/NY.object -q data/NY.query pkkvc optimal 40`
   
 * update for inserting objects into a set of candidate objects <br>
