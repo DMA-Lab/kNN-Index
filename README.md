@@ -22,13 +22,13 @@ All the datasets in this paper can be downloaded from [DIMACS](http://www.diag.u
 * construct neighbor bridge graph <br>
   `./sdg data/NY.data data/NY.idx`
   
-* construct knn-index and query
+* construct knn-index and query <br>
   `./qu data/NY.idx data/NY.object -q data/NY.query pkkvc optimal 40`
   
-* update for inserting objects into a set of candidate objects
+* update for inserting objects into a set of candidate objects <br>
   `./qu data/NY.idx data/NY.object -u data/NY.in pkkvc optimal 40`
   
-* update for deleting objects from a set of candidate objects
+* update for deleting objects from a set of candidate objects <br>
   `./qu data/NY.idx data/NY.object -u data/NY.de pkkvc optimal 40`
 
 * Arguments
