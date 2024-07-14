@@ -65,7 +65,7 @@ Note: In our experiments, all deleted objects (inserted objects) are valid. All 
   * `oridata`: the file path to the raw data <br>
   * `gendata`: the file path to generated data file, which stores the formatted data <br>
   
-  eg: `./pre data/NY-road-d.NY.gr data/NY.data` <br>
+  eg: `./pre data/USA-road-d.NY.gr data/NY.data` <br>
   
 * construct bridge neighbor graph <br>
   `./pre origraph bng`  <br>
