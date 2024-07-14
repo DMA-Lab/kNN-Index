@@ -39,13 +39,13 @@ There are five files in the `data` folder: <br>
   6
 * `NY.de` stores all objected to be deleted from the candidate set. Please refer to the format below, including sample data: <br>
   ```
-  2  (there are 2 objects, will be deleted from the set)
-  3  (vertex 3 will be deleted from the candidate object set)
-  5
+  2    (there are 2 objects, will be deleted from the set)
+  d 3  (vertex 3 will be deleted from the candidate object set)
+  d 5
 * `NY.in` stores all objected to be inserted into the candidate set. Please refer to the format below, including sample data: <br>
   ```
-  1  (there are 1 objects, will be inserted into the set)
-  2  (vertex 2 will be inserted into the candidate object set)
+  1    (there are 1 objects, will be inserted into the set)
+  i 2  (vertex 2 will be inserted into the candidate object set)
 Note: In our experiments, all deleted objects (inserted objects) are valid. All objects to be deleted are part of the original candidate object set. While, all objects to be inserted do not belong to the original candidate object set.
 
 ### Compile
