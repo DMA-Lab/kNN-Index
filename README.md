@@ -68,8 +68,10 @@ Note: In our experiments, all deleted objects (inserted objects) are valid. All 
   
   * construct knn-index and query <br>
     `./qu data/NY.idx data/NY.object -q data/NY.query opt 40`
+    
   * update for inserting objects into a set of candidate objects <br>
     `./qu data/NY.idx data/NY.object -u data/NY.in opt 40`
+    
   * update for deleting objects from a set of candidate objects <br>
     `./qu data/NY.idx data/NY.object -u data/NY.de opt 40`
 
