@@ -387,7 +387,7 @@ int main(int argc, char *argv[])
 		clock_t kvc_begin = clock();
 		td.kvc();
 		double kvc_time =  (double)(clock() - kvc_begin)/ CLOCKS_PER_SEC;
-		cout<<"BN-Graph Construction time: "<< (kvc_time + redu_time) <<endl;
+		cout<<"BN-Graph Construction time: "<< (kvc_time + redu_time) << " s" <<endl;
 
 		td.saveIndex();
 		fclose(stdout);
