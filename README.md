@@ -30,19 +30,19 @@ There are five files in the `data` folder: <br>
   1 3  (a query: return top 3 nearest neighbors for query vertex 1)
   2 2
   3 4
-* `NY.object` stores all obejcts.  Please refer to the format below, including sample data: <br>
+* `NY.object` stores all obejcts in the candidate set.  Please refer to the format below, including sample data: <br>
   ```
   4  (there are total 4 objects in the candidate object set)
   1  (vertex 1 belongs to the candidate object set)
   3
   5
   6
-* `NY.de` stores all objected to be deleted. Please refer to the format below, including sample data: <br>
+* `NY.de` stores all objected to be deleted from the candidate set. Please refer to the format below, including sample data: <br>
   ```
   2  (there are 2 objects, will be deleted from the set)
   3  (vertex 3 will be deleted from the candidate object set)
   5
-* `NY.in` stores all objected to be inserted. Please refer to the format below, including sample data: <br>
+* `NY.in` stores all objected to be inserted into the candidate set. Please refer to the format below, including sample data: <br>
   ```
   1  (there are 1 objects, will be inserted into the set)
   2  (vertex 2 will be inserted into the candidate object set)
