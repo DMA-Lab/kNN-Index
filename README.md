@@ -23,26 +23,26 @@ There are five files in the `data` folder: <br>
   3  5  2
   4  5  3
   5  6  3
-* `NY.qu` stores all queries. A sample data for `NY.qu` contains 3 queries, formatted as follows: <br>
+* `NY.qu` stores all queries.  Please refer to the format below, including sample data: <br>
 
   ```
   3    (there are total 3 queries)
   1 3  (a query: return top 3 nearest neighbors for query vertex 1)
   2 2
   3 4
-* `NY.object` stores all obejcts. A sample data for `NY.object` contians obejcts in the candidate object set, formatted as follows: <br>
+* `NY.object` stores all obejcts.  Please refer to the format below, including sample data: <br>
   ```
   4  (there are total 4 objects in the candidate object set)
   1  (vertex 1 belongs to the candidate object set)
   3
   5
   6
-* `NY.de` stores all objected to be deleted. A sample data for `NY.de` contains objects deleted from the candidate object set, shown as follows: 
+* `NY.de` stores all objected to be deleted. Please refer to the format below, including sample data: <br>
   ```
   2  (there are 2 objects, will be deleted from the set)
   3  (vertex 3 will be deleted from the candidate object set)
   5
-* `NY.in` stores all objected to be inserted. A sample data for `NY.in` contains objects inserted into the candidate object set, shown as follows:
+* `NY.in` stores all objected to be inserted. Please refer to the format below, including sample data: <br>
   ```
   1  (there are 1 objects, will be inserted into the set)
   2  (vertex 2 will be inserted into the candidate object set)
