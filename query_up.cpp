@@ -294,7 +294,7 @@ int M_K;
 		}
 	}
     void dfs_up_pro(){
-		for(int p=n-1;p>=0;p--){
+		for(int p=0;p<n;++p){
 			join_sbt_up_kpv_pro(p, uniqueVertex[p], kpv[p], kpvd[p], kpvSize[p]);
 		}
 	}
@@ -438,8 +438,9 @@ int M_K;
 		
 		if (is_current_object[x] == 1){
 			OSS_push_back(p, x, 0);
-			for (int i = 0; (i < b.size()) && (i < (M_K-1)); i++)
+			for (int i = 0; (i < b.size()) && (i < (M_K-1)); i++){
 				OSS_push_back(p, b[i], current_distance[b[i]]);
+			}
 		}else{
 			for (int i = 0; (i < b.size()) && (i < M_K); i++)
 				OSS_push_back(p, b[i], current_distance[b[i]]);
@@ -447,7 +448,7 @@ int M_K;
 		}
 	}
     void dfs_up_kvcmdk(){
-		for(int p=n-1;p>=0;p--){
+		for(int p=0;p<n;++p){
 			join_sbt_up_kpv_mdk(p, uniqueVertex[p], kpv[p], kpvd[p], kpvSize[p]);
 		}
 	}
@@ -516,7 +517,8 @@ int M_K;
 		
 	}
 	void dfs_down_kvcmdk(){
-		for(int p=0;p<n;p++){ 
+		for(int p=n-1;p>=0;--p){
+			//cout<<"p: "<<p<<" x: "<<uniqueVertex[p]<<endl;
 			join_sbt_down_kfv_mdk(p, uniqueVertex[p], kfv[p], kfvd[p], kfvSize[p]);
 		}
 	}
@@ -955,7 +957,7 @@ int M_K;
 		//cout<<x<<" G: ";
 		for (int i = OSS_global[p].a[0].next; i != 0; i = OSS_global[p].a[i].next){
 			result.push_back(make_pair(OSS_global[p].a[i].key, OSS_global[p].a[i].dist));
-			//cout<<" ("<<OSS_global[p].a[i].key<<", "<<OSS_global[p].a[i].dist<<") ";
+			//cout<<"("<<OSS_global[p].a[i].key<<", "<<OSS_global[p].a[i].dist<<") ";
 		}
 		//cout<<endl;
 		return result;
@@ -1034,9 +1036,6 @@ double get_mean_double(vector<double>& times) {
     for (double val : times) {
         mean += val;
     }
-	//cout<<mean<<endl;
-	//printf("query all time: %.6lf s \n", mean);	
-	//cout<<"times.size(): "<<times.size()<<endl;
     return mean / times.size();
 }
 double get_var_double(vector<double>& times) {
