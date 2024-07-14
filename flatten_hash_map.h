@@ -1,6 +1,3 @@
-//
-// Created by 24148 on 03/07/2020.
-//
 
 #ifndef LCTD_FLATTEN_HASH_MAP_H
 #define LCTD_FLATTEN_HASH_MAP_H
