@@ -12,7 +12,7 @@ All the datasets in this paper can be downloaded from [DIMACS](http://www.diag.u
 
 ### Preliminary
 There are five txt files in the 'data/test' folder: <br>
-  (i) graph.txt; (ii) query.txt; (iii) objects.txt; (iv) deletedObjects.txt; (v) insertedObjects.txt <br>
+  (i) graph.txt (ii) query.txt (iii) objects.txt (iv) deletedObjects.txt (v) insertedObjects.txt <br>
 * A sample data for graph.txt, in this case, contians only 6 nodes and 6 edges, formatted as follows: <br>
   ```
   6  6     (there are total 6 vertices and 6 edges) 
