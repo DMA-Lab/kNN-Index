@@ -13,7 +13,8 @@ All the datasets in this paper can be downloaded from [DIMACS](http://www.diag.u
 ### Preliminary
 There are five files in the `data` folder: <br>
  
-* `NY.data` stores the whole graph data. A sample data for `NY.data`, in this case, contians only 6 nodes and 6 edges, formatted as follows: <br>
+* `NY.data` stores the whole graph data. Please refer to below format: <br>
+
   ```
   6  6     (there are total 6 vertices and 6 edges) 
   1  2  8  (an edge between vertex 1 and vertex 2 with the distance of 8)
@@ -23,6 +24,7 @@ There are five files in the `data` folder: <br>
   4  5  3
   5  6  3
 * `NY.qu` stores all queries. A sample data for `NY.qu` contains 3 queries, formatted as follows: <br>
+
   ```
   3    (there are total 3 queries)
   1 3  (a query: return top 3 nearest neighbors for query vertex 1)
