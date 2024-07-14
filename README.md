@@ -11,7 +11,7 @@ All experiments were conducted on a Linux machine with an Intel Xeon CPU and 384
 All the datasets in this paper can be downloaded from [DIMACS](http://www.diag.uniroma1.it/~challenge9/download.shtml) 
 
 ### Preliminary
-There are five txt files in the 'data/test' folder: <br>
+There are five txt files in the 'data' folder: <br>
   (i) graph.txt (ii) query.txt (iii) objects.txt (iv) deletedObjects.txt (v) insertedObjects.txt <br>
 * A sample data for graph.txt, in this case, contians only 6 nodes and 6 edges, formatted as follows: <br>
   ```
