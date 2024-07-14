@@ -5,7 +5,6 @@
 #include <fstream>
 #include <iostream>
 
-
 #define LEN 1000
 char line[LEN];
 using namespace std;
