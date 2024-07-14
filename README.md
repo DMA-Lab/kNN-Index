@@ -7,7 +7,8 @@ This project implements the KNN algorithms for the following paper:
 All the datasets in this paper can be downloaded from [DIMACS](http://www.diag.uniroma1.it/~challenge9/download.shtml)
 
 ### Compile
-* compile index_sdg.cpp for preprocessing original graph date <br>
+
+* compile predata.cpp for preprocessing original graph data <br>
   `g++ -std=c++11 -O3 predata.cpp -o pre`
 * compile index_sdg.cpp for building neighbor bridge graph <br>
   `g++ -std=c++11 -O3 index_sdg.cpp -o sdg`
