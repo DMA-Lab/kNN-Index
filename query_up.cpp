@@ -95,51 +95,21 @@ void readIndex(char *file){
 	}
 
 	for(int x=0;x<n;++x){
-		//cout<<"x: "<<x<<endl;
 		fread(&kpvSize[x], SIZEOFINT, 1, fin);
-		//cout<<"kpvSize[x]: "<<kpvSize[x]<<endl;
 		kpv[x] = (int*)malloc(sizeof(int) * kpvSize[x]);
-		
 		fread(kpv[x], SIZEOFINT, kpvSize[x], fin);
-		/*cout<<"kpv: "<<endl;
-		for(int i = 0;i<kpvSize[x];++i){
-			cout<<kpv[x][i]<<" ";
-		}
-		cout<<endl;*/
 
 		fread(&kpvdSize[x], SIZEOFINT, 1, fin);
-		//cout<<"kpvdSize[x]: "<<kpvdSize[x]<<endl;
 		kpvd[x] = (int*)malloc(sizeof(int) * kpvdSize[x]);
-
 		fread(kpvd[x], SIZEOFINT, kpvdSize[x], fin);
-		/*
-		cout<<"kpvd: "<<endl;
-		for(int i = 0;i<kpvdSize[x];++i){
-			cout<<kpvd[x][i]<<" ";
-		}
-		cout<<endl;*/
-
+		
 		fread(&kfvSize[x], SIZEOFINT, 1, fin);
-		//cout<<"kfvSize[x]: "<<kfvSize[x]<<endl;
 		kfv[x] = (int*)malloc(sizeof(int) * kfvSize[x]);
 		fread(kfv[x], SIZEOFINT, kfvSize[x], fin);
-		/*
-		cout<<"kfv: "<<endl;
-		for(int i = 0;i<kfvSize[x];++i){
-			cout<<kfv[x][i]<<" ";
-		}
-		cout<<endl;*/
 
 		fread(&kfvdSize[x], SIZEOFINT, 1, fin);
-		//cout<<"kfvdSize[x]: "<<kfvdSize[x]<<endl;
 		kfvd[x] = (int*)malloc(sizeof(int) * kfvdSize[x]);
 		fread(kfvd[x], SIZEOFINT, kfvdSize[x], fin);
-		/*
-		cout<<"kfvd: "<<endl;
-		for(int i = 0;i<kfvdSize[x];++i){
-			cout<<kfvd[x][i]<<" ";
-		}
-		cout<<endl;*/
 	}
 	fclose(fin);
 }
@@ -604,12 +574,12 @@ int M_K;
 		
 		//max_ug_size=0, sum_ug_size=0;
 
-		if(strcmp(insert_type, "pkkvc") == 0){
+		if(strcmp(insert_type, "opt") == 0){
 			object_setting(n);
 			//kvc naive: MAX_dis 做了一个bound + 取k次
 			dfs_up_kvcmdk();
 			dfs_down_kvcmdk();
-		}else if(strcmp(insert_type, "naive") == 0){
+		}else if(strcmp(insert_type, "pri") == 0){
 			//naive kvc
 			object_setting_naive(n);
 			dfs_up_pro();
@@ -1158,10 +1128,7 @@ int main(int argc, char *argv[]){
             res = knn.query(x, k);
             times.push_back(GetTime() - start_time);
 		}
-		//end_time = GetTime();	
-	    //double ave_time = (end_time - _start_time) / q_n;
         printf("Average query time: %.6lf us\n", get_mean_double(times) * 1e6);
-		//cout<<"ave_time : "<< (ave_time * 1e6) <<endl;
         printf("Var query time: %.6lf us\n", get_var_double(times) * 1e6);
 	}
 	else if (argv[3][1] == 'u'){
