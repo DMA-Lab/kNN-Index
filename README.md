@@ -11,9 +11,9 @@ All experiments were conducted on a Linux machine with an Intel Xeon CPU and 384
 All the datasets in this paper can be downloaded from [DIMACS](http://www.diag.uniroma1.it/~challenge9/download.shtml) 
 
 ### Preliminary
-There are five txt files in the 'data' folder: <br>
-  (i) graph.txt (ii) query.txt (iii) objects.txt (iv) deletedObjects.txt (v) insertedObjects.txt <br>
-* A sample data for graph.txt, in this case, contians only 6 nodes and 6 edges, formatted as follows: <br>
+There are five files in the `data` folder: <br>
+(i)  NY.data (ii) NY.qu (iii) NY.object (iv) NY.de (v) NY.in <br>
+* NY.data stores all graph data. A sample data for graph.txt, in this case, contians only 6 nodes and 6 edges, formatted as follows: <br>
   ```
   6  6     (there are total 6 vertices and 6 edges) 
   1  2  8  (an edge between vertex 1 and vertex 2 with the distance of 8)
@@ -22,25 +22,25 @@ There are five txt files in the 'data' folder: <br>
   3  5  2
   4  5  3
   5  6  3
-* A sample data for query.txt contains 3 queries, formatted as follows: <br>
+* NY.qu stores all queries. A sample data for query.txt contains 3 queries, formatted as follows: <br>
   ```
   3    (there are total 3 queries)
   1 3  (a query: return top 3 nearest neighbors for query vertex 1)
   2 2
   3 4
-* A sample data for objects.txt contians the candidate object set, formatted as follows: <br>
+* NY.object stores all obejcts. A sample data for objects.txt contians the candidate object set, formatted as follows: <br>
   ```
   4  (there are total 4 objects in the candidate object set)
   1  (vertex 1 belongs to the candidate object set)
   3
   5
   6
-* A sample data for deletedObjects.txt contains objects deleted from the candidate object set, shown as follows: 
+* NY.de stores all objected to be deleted. A sample data for deletedObjects.txt contains objects deleted from the candidate object set, shown as follows: 
   ```
   2  (there are 2 objects, will be deleted from the set)
   3  (vertex 3 will be deleted from the candidate object set)
   5
-* A sample data for insertedObjects.txt contains objects inserted into the candidate object set, shown as follows:
+* NY.in stores all objected to be inserted. A sample data for insertedObjects.txt contains objects inserted into the candidate object set, shown as follows:
   ```
   1  (there are 1 objects, will be inserted into the set)
   2  (vertex 2 will be inserted into the candidate object set)
