@@ -13,7 +13,7 @@ int main(int argc, char *argv[]) {
 	//cout << argv[1] << " " << argv[2] << endl;
 	FILE *f = fopen(argv[1], "r");
 	if (!f) {
-		printf("file %s not found.", "USA.txt");
+		printf("file %s not found.", argv[1]);
 		exit(-1);
 	}
 	bool first = true;
