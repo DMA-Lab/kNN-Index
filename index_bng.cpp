@@ -15,6 +15,7 @@ using namespace std;
 clock_t ct;
 int cnt, tree_width = 0;
 vector<vector<pair<int,int>>> Edge;
+
 // initialize graph data
 struct Graph{
 	int n, m;
@@ -85,8 +86,6 @@ struct Node{
 	vector<int> vert, kfv;
 	int uniqueVertex;
 	//, pos, pos2, dis
-	//new code
-	map<int,int> v_d;
 
 	vector<int> ch;
 	koala::my_openadd_hashmap<unsigned int> edges; // contains: vert & VL
@@ -103,7 +102,6 @@ struct Node{
 		ch.clear();
 		pv.clear();
 		pvd.clear();
-		v_d.clear();
 		edges.clear();
 		pa = -1;
 		uniqueVertex = -1;
@@ -111,18 +109,21 @@ struct Node{
 	}
 };
 
-class Decomposition{
+class Tree_Decomposition{
 public: 
 	FILE *fout, *fin;
-	Graph G, H;
+	Graph G;//, H;
 	int maxSize;
 	int *curup_affect, curup_stamp;
-	Decomposition(){
+	Tree_Decomposition(){
 	}
 	vector<int> ord;
 	int heightMax;
 
-	vector<int> vertexOrder, root_vertexes;
+	vector<int> vertexOrder;
+	//, 
+	vector<int> root_vertexes;
+
 	vector<Node> tnodes;
 	int vorder = 0;
 	//int treewidth = 0;
@@ -146,10 +147,8 @@ public:
 		for (int s = 1; s < Edge.size(); ++s) {
 			for (unsigned int i = 0; i < Edge[s].size(); ++i) {
 				shortcuts[s].insert(Edge[s][i].first, Edge[s][i].second);
-				//if(s==5) cout<<"("<<Edge[s][i].first<<","<< Edge[s][i].second<<")";
 			}
 		}
-		//cout<<endl;
 
 		vertexOrder.resize(Edge.size(), -1);
 		ord.clear();
@@ -173,7 +172,7 @@ public:
 			
 			koala::my_openadd_hashmap<unsigned int> &v = shortcuts[vid];
 			vector<unsigned int> valid_neighbor_index;
-			int cnt_width = 0;
+			//int cnt_width = 0;
 			
 			for (unsigned int i = v.iterator(); v.has_next(i); v.next(i)) {
 				if (vertexOrder[v.get_with_idx(i).first] == -1) {
@@ -182,14 +181,12 @@ public:
 					tnodes[vid].edges.insert(vec, di);
 					tnodes[vid].vert.push_back(vec);
 					tnodes[vid].VL.push_back(di);
-					//tnodes[vid].KVL.push_back(v.get_with_idx(i).second);
-					//cout<<"("<<v.get_with_idx(i).first<<","<<v.get_with_idx(i).second<<") ";
-					cnt_width++;
+					//++cnt_width;
 				}else{
 					tnodes[vid].pv.push_back(v.get_with_idx(i).first);
 					tnodes[vid].pvd.push_back(v.get_with_idx(i).second);
 				}
-			}//cout<<endl;
+			}
 			//if (cnt_width>treewidth) treewidth = cnt_width;
 			
 			vector<int> neighbor_degree_increase_cnt(valid_neighbor_index.size(), -1);
@@ -267,45 +264,8 @@ public:
 		cout<<"there are still "<< root_cnt <<" root vertexes not reduced yet "<< endl;*/
 	}
 
-	vector<Node> Tree;
 	int root = 0;
 	
-	//只是在找parents 和 children 
-	void pa_ch(){
-		int cpin =0;
-		int order = 0;
-		int nearest =-1;
-		int trlen = ord.size()-1;
-		tnodes[ord[trlen]].height = 1;
-		tnodes[ord[trlen]].pa = -1;
-		root = ord[trlen];
-		trlen--;
-
-		for(; trlen >= 0; trlen--){
-			int vi = ord[trlen];
-			order = H.n;
-			nearest = -1;
-			int neighbor = 0;
-			auto& edges = tnodes[vi].edges;
-			for (unsigned int i = edges.iterator(); edges.has_next(i); edges.next(i)) {
-				neighbor = edges.get_with_idx(i).first;
-				if (vertexOrder[neighbor] < order){
-					nearest = neighbor;
-					order = vertexOrder[neighbor];
-				}
-			}
-			int pa = nearest;
-			//nod.pa = pa;
-			if(cpin) cout<<"vi: "<<vi<<" pa: "<<pa<<endl;
-			tnodes[vi].pa = pa;
-			//ch = pv?
-			tnodes[pa].ch.push_back(vi);
-			//height 什么用 ？？除非用于统计L
-			tnodes[vi].height = tnodes[pa].height + 1;
-			if (tnodes[vi].height > heightMax) heightMax = tnodes[vi].height;
-		}
-	}
-
 	inline unsigned int dist(int s, int t) {
 		if (s == t) return 0;
 		else if (vertexOrder[s] < vertexOrder[t])
@@ -313,23 +273,22 @@ public:
 		return tnodes[t].edges[s];
 	}
 
+	// ord: order -> original id
+	// vertexOrder: original id -> order
+	
 	void kvc(){	
-		//int cpin = 0;
 		int trlen = ord.size()-1;
-		//tnodes[ord[trlen]].height = 1;
-		//heightMax = 0;
 		int g_n = trlen+1;
 		int order = g_n;
 		
 		vector<bool> c_kvc;
 		c_kvc.resize(g_n, true);
 		int nearest=0, neighbor=0; 
-		int fv =0;
+		int fv = 0;
 		trlen--;
 		//按照 order 在取vertex 
 		for (; trlen >= 0; trlen--){
 			int x = ord[trlen];
-			//if(cpin) cout<<"x: "<<x<<endl;
 			order = g_n;
 			auto& edges = tnodes[x].edges;
 			int ki =0, kj=0;
@@ -362,40 +321,6 @@ public:
 					c_kvc[i] = true;
 				}
 			}
-		/*	
-		if(cpin) {
-			cout<<"nbr: ";
-			for (unsigned int i = edges.iterator(); edges.has_next(i); edges.next(i)) {
-			//for(int i = 0; i<tnode_size; i++){
-				cout<<"("<<i<<", "<<edges.get_with_idx(i).first<<") ";
-			}cout<<endl;
-			
-			cout<<"vert: ";
-			for(int i = 0; i<tnodes[x].vert.size(); i++){
-				cout<<tnodes[x].vert[i]<<" ";
-			}cout<<endl;
-
-			cout<<"dis: ";
-			for(int i = 0; i<tnodes[x].VL.size(); i++){
-				cout<<tnodes[x].VL[i]<<" ";
-			}cout<<endl;
-
-			cout<<"gdis: ";
-			for (unsigned int i = edges.iterator(); edges.has_next(i); edges.next(i)) {
-			//for(int i = 0; i<tnode_size; i++){
-				cout<<edges.get_with_idx(i).second<<" ";
-			}cout<<endl;
-			
-			cout<<"kfv: ";
-			for(int i = 0; i<tnodes[x].kfv.size(); i++){
-				cout<<tnodes[x].kfv[i]<<" ";
-			}cout<<endl;
-		}*/
-			//int pa = nearest;
-			//tnodes[x].pa = pa;
-			//tnodes[pa].ch.push_back(x);
-			//tnodes[x].height = tnodes[pa].height + 1;
-			//if (tnodes[x].height > heightMax) heightMax = tnodes[x].height;
 		}
 	}
 
@@ -406,101 +331,38 @@ public:
 			return;
 		}
 		int x = a.size();
+		cout<<"x: "<<x<<endl;
 		fwrite(&x, SIZEOFINT, 1, fout);
-		for (int i = 0; i < a.size(); i++){
+		for (int i = 0; i < x; i++){
+			cout<<"a["<<i<<"]: "<<a[i]<<endl;
 			fwrite(&a[i], SIZEOFINT, 1, fout);
 		}
+		
 	}
 	
 	void saveIndex(){
-
-		int pin = 0;
-
-		/*int cnt_fv = 0;
-		int cnt_pv = 0;
-		int cnt_kfv = 0;
-		int cnt_kpv = 0;*/
-
-		fwrite(&root, SIZEOFINT, 1, fout);
-		Tree[root].vert.push_back(Tree[root].uniqueVertex);
-		printIntVector(Tree[root].vert);
-		Tree[root].vert.pop_back();
-		printIntVector(Tree[root].KVL);
-		printIntVector(Tree[root].pv);
-		printIntVector(Tree[root].pvd);
-		printIntVector(Tree[root].kpv);
-		printIntVector(Tree[root].kpvd);			
-		Tree[root].kfv.push_back(Tree[root].uniqueVertex);
-		printIntVector(Tree[root].kfv);
-		Tree[root].kfv.pop_back();
-		printIntVector(Tree[root].kfvd);
-		if(pin){
-			cout<<"current v: "<<Tree[root].uniqueVertex<<endl;
-			for(int i = 0; i<Tree[root].pv.size(); i++) cout<<"Tree[root].pv[i]: "<<Tree[root].pv[i]<<endl;
-			for(int i = 0; i<Tree[root].kpv.size(); i++) cout<<"Tree[root].kpv[i]: "<<Tree[root].kpv[i]<<endl;
+		fwrite(&G.n, SIZEOFINT, 1, fout);
+		printIntVector(ord);
+		printIntVector(vertexOrder);
+		for(int i = 0;i<G.n;++i){
+			cout<<"ord: "<< ord[i]<<endl;
+			//fwrite(&i, SIZEOFINT, 1, fout); //id
+			cout<<"kpv: "<<endl;
+			printIntVector(tnodes[ord[i]].kpv);
+			cout<<"kpvd: "<<endl;
+			printIntVector(tnodes[ord[i]].kpvd);
+			cout<<"kfv: "<<endl;
+			tnodes[ord[i]].kfv.push_back(ord[i]);
+			printIntVector(tnodes[ord[i]].kfv);
+			cout<<"kfvd: "<<endl;
+			//tnodes[ord[i]].kfvd.push_back(0);
+			printIntVector(tnodes[ord[i]].kfvd);
 		}
-		cnt = 0;
-
-		/*cnt_fv = Tree[root].vert.size();
-		cnt_pv = Tree[root].pv.size();
-		cnt_kfv = Tree[root].kfv.size();
-		cnt_kpv = Tree[root].kpv.size();*/
-
-		//new code
-		queue<int> Q;
-		while (!Q.empty()) Q.pop();
-
-		for (int i = 0; i < Tree[root].ch.size(); i++) Q.push(Tree[root].ch[i]);
-
-		while(!Q.empty()){
-
-			auto v = Q.front();
-			Q.pop();
-
-			/*cnt_fv += Tree[v].vert.size();
-			cnt_pv += Tree[v].pv.size();
-			cnt_kfv += Tree[v].kfv.size();
-			cnt_kpv += Tree[v].kpv.size();*/
-
-			for(auto a: Tree[v].ch){
-				Q.push(a);
-			}
-            
-			fwrite(&v, SIZEOFINT, 1, fout);
-
-			/*if(pin){
-				cout<<"current v: "<<Tree[v].uniqueVertex<<endl;
-				for(int i = 0; i<Tree[v].pv.size(); i++) cout<<"Tree[v].pv[i]: "<<Tree[v].pv[i]<<endl;
-				for(int i = 0; i<Tree[v].kpv.size(); i++) cout<<"Tree[v].kpv[i]: "<<Tree[v].kpv[i]<<endl;
-				for(int i = 0; i<Tree[v].vert.size(); i++) cout<<"Tree[v].vert[i]: "<<Tree[v].vert[i]<<endl;
-				for(int i = 0; i<Tree[v].kfv.size(); i++) cout<<"Tree[v].kfv[i]: "<<Tree[v].kfv[i]<<endl;
-			}*/
-			
-		    Tree[v].vert.push_back(Tree[v].uniqueVertex);
-		    printIntVector(Tree[v].vert);
-		    Tree[v].vert.pop_back();
-		    printIntVector(Tree[v].KVL);
-			printIntVector(Tree[v].pv);
-			printIntVector(Tree[v].pvd);
-			printIntVector(Tree[v].kpv);
-			printIntVector(Tree[v].kpvd);
-			Tree[v].kfv.push_back(Tree[v].uniqueVertex);
-			printIntVector(Tree[v].kfv);
-			Tree[v].kfv.pop_back();
-			printIntVector(Tree[v].kfvd);
-			//printMapVector(Tree[v].v_d);
-		}
-		/*
-		int pin_cnt=0;
-		if(pin_cnt){
-			cout<<"cnt_fv: "<<cnt_fv<<endl;
-			cout<<"cnt_pv: "<<cnt_pv<<endl;
-			cout<<"cnt_kfv: "<<cnt_kfv<<endl;
-			cout<<"cnt_kpv: "<<cnt_kpv<<endl;
-		}*/
+		cout<<endl;
 	}
-    int ug_size(int p){
-		curup_stamp++;
+    
+	int ug_size(int p){
+		++curup_stamp;
 		int ug_size = 0; 
 		queue<int> cug; cug.push(p); ug_size++;
         int x = p;
@@ -509,15 +371,15 @@ public:
 			int p = cug.front(); cug.pop();
 			for(int i=0;i<tnodes[p].kfvd.size();i++){
 				if (curup_affect[tnodes[p].kfv[i]] != curup_stamp) {
-					ug_size++; 
+					++ug_size; 
 					cug.push(tnodes[p].kfv[i]);
 					curup_affect[tnodes[p].kfv[i]] = curup_stamp;
 				}
 			}
 		}
-		
 		return ug_size;
 	}
+	
 	int max_ug_size(){
 		int trlen = ord.size();
 		curup_stamp = 0;
@@ -529,6 +391,7 @@ public:
 		}
 		return max_ug_size;
 	}
+	
 	void cntSize(){
 		int tree_size = ord.size();
 		int kw = 0, w = 0;
@@ -548,44 +411,8 @@ public:
 	}
 	
 	static const int SIZEOFINT = 4;
-	void printIntArray(int * a, int n){
-		fwrite(a, SIZEOFINT, n, fout);
-	}
-	
-	void print(){
-		//G.n
-		fwrite(&G.n, SIZEOFINT, 1, fout); 
-		printf("G.n %d\n", G.n);
-		int x = Tree.size();
-		fwrite(&x, SIZEOFINT, 1, fout);
-		for (int i = 0; i < Tree.size(); i++){
-			fwrite(&Tree[i].height, SIZEOFINT, 1, fout);
-		}
-		for (int i = 0; i < Tree.size(); i++){
-			fwrite(&Tree[i].pa, SIZEOFINT, 1, fout);
-		}
-		for (int i = 0; i < Tree.size(); i++){
-			fwrite(&Tree[i].uniqueVertex, SIZEOFINT, 1, fout);
-		}
-		//belong
-		//printIntArray(belong, H.n + 1);
-        int pt=0;
-		//rootDistance
-		fwrite(&root, SIZEOFINT, 1, fout);
-		for (int i = 0; i < Tree.size(); i++){
-			if(pt) cout<<"ch[]"<<Tree[i].uniqueVertex<<": ";
-			int t = Tree[i].ch.size();
-			fwrite(&t, SIZEOFINT, 1, fout);
-			for (int j = 0; j < t; j++){
-				fwrite(&Tree[i].ch[j], SIZEOFINT, 1, fout);
-				if(pt) cout<<Tree[i].ch[j]<<" ";
-			}
-			if(pt) cout<<endl;
-		}	
-	}
 };
 
-// floyd deal with vertices which is deleted
 int main(int argc, char *argv[])
 {
 	srand(time(0));
@@ -593,37 +420,29 @@ int main(int argc, char *argv[])
 	if (operation == 1){ // index 
 		string filest;
 		char *file, *fileout;
-		//int i;
 		file = argv[1];
 		cout << "file: " << file << endl;
 		fileout = argv[2];
-		Decomposition td;
+		Tree_Decomposition td;
 		td.fout = fopen(fileout, "wb");
 		// read graph data
 		td.G = Graph(file);
 		
-		td.H = td.G;
-		cout<<"start reduction"<<endl;
 		clock_t start = clock();
 		td.reduction();
 		double redu_time =  (double)(clock() - start)/ CLOCKS_PER_SEC;
-		cout<<"finish reduce: "<< redu_time <<endl;
+		//cout<<"finish reduce: "<< redu_time <<endl;
 
-		//clock_t pc_begin = clock();
-		//td.pa_ch();
-		//cout << "pa_ch time: " << (double)(clock() - pc_begin) / CLOCKS_PER_SEC << endl; 
-		
 		clock_t kvc_begin = clock();
 		td.kvc();
 		double kvc_time =  (double)(clock() - kvc_begin)/ CLOCKS_PER_SEC;
-		cout << "KVC: " << kvc_time << endl; 
+		//cout << "KVC: " << kvc_time << endl; 
 		cout<<"all ch time: "<< (kvc_time + redu_time) <<endl;
+
 		//cout << "MakeIndex+reduce time: " << (double)(clock() - start) / CLOCKS_PER_SEC << endl;
 		//td.cntSize();
-
 		//td.print();
-        //cout << "Tree height: " << td.heightMax << endl;
-
+		td.saveIndex();
 		fclose(stdout);
 	}
 
