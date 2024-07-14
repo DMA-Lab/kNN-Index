@@ -40,7 +40,7 @@ There are five files in the `data` folder: <br>
   2  (there are 2 objects, will be deleted from the set)
   3  (vertex 3 will be deleted from the candidate object set)
   5
-* NY.in stores all objected to be inserted. A sample data for iNY.in contains objects inserted into the candidate object set, shown as follows:
+* NY.in stores all objected to be inserted. A sample data for NY.in contains objects inserted into the candidate object set, shown as follows:
   ```
   1  (there are 1 objects, will be inserted into the set)
   2  (vertex 2 will be inserted into the candidate object set)
@@ -51,7 +51,7 @@ Note: In our experiments, all deleted objects (inserted objects) are valid. All 
 * compile predata.cpp for preprocessing the raw graph data <br>
   `g++ -std=c++11 -O3 predata.cpp -o pre`
   
-* compile index_sdg.cpp for building bridge neighbor preserved graph for the original graph <br>
+* compile index_bng.cpp for building bridge neighbor preserved graph for the original graph <br>
   `g++ -std=c++11 -O3 index_bng.cpp -o bng`
   
 * compile query_up.cpp for knn-index construction, knn queries and updating objects <br>
@@ -60,15 +60,15 @@ Note: In our experiments, all deleted objects (inserted objects) are valid. All 
 ### Test
 * Preprocess raw graph data from [DIMACS](http://www.diag.uniroma1.it/~challenge9/download.shtml) <br>
   `./pre oridata gendata`  <br>
-  * oridata: the file path to the raw data <br>
-  * gendata: the file path to generated data file, which stores the formatted data <br>
+  * `oridata`: the file path to the raw data <br>
+  * `gendata`: the file path to generated data file, which stores the formatted data <br>
   
   eg: `./pre data/NY-road-d.NY.gr data/NY.data` <br>
   
 * construct bridge neighbor graph <br>
   `./pre origraph bng`  <br>
-  * origraph: the file path to a data file, containing the original graph data <br>
-  * bng: the file path to the data file, storing the bridge neighbor graph <br>
+  * `origraph`: the file path to a data file, containing the original graph data <br>
+  * `bng`: the file path to the data file, storing the bridge neighbor graph <br>
   
   eg: `./bng data/NY.data data/NY.idx` 
  
@@ -85,10 +85,10 @@ Note: In our experiments, all deleted objects (inserted objects) are valid. All 
     `./qu data/NY.idx data/NY.object -u data/NY.de opt 40`
 
 * Arguments
-  * bng: the file path to the bridge neighbor graph
-  * objset: the file path to the object file
-  * -X: '-q' denotes to query, '-u' denotes to update objects
-  * XF: the file path to queries document or the path to updates document
-  * alg: choose a knn-index construction algo, 'pri' represents our primary bottom-up computing-sharing algorithm (alg 2 in our paper), 'opt' represents our optimized bidirectional construction algorihtm (alg 3 in our paper).
-  * topk: the paramter for $k$ in the top $k$ nearesr neighbor search 
+  * `bng`: the file path to the bridge neighbor graph
+  * `objset`: the file path to the object file
+  * `-X`: `-q` denotes to query, `-u` denotes to update objects
+  * `XF`: the file path to queries document or the path to updates document
+  * `alg`: choose a knn-index construction algo, `pri` represents our primary bottom-up computing-sharing algorithm (alg 2 in our paper), `opt` represents our optimized bidirectional construction algorihtm (alg 3 in our paper).
+  * `topk`: the paramter for $k$ in the top $k$ nearesr neighbor search 
 
