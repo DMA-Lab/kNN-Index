@@ -10,7 +10,6 @@ char line[LEN];
 using namespace std;
 
 int main(int argc, char *argv[]) {
-	//char *path = "NY.txt";
 	//cout << argv[1] << " " << argv[2] << endl;
 	FILE *f = fopen(argv[1], "r");
 	if (!f) {
