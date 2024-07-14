@@ -298,7 +298,6 @@ public:
 			//cout<<"a["<<i<<"]: "<<a[i]<<endl;
 			fwrite(&a[i], SIZEOFINT, 1, fout);
 		}
-		
 	}
 	
 	void saveIndex(){
@@ -390,7 +389,7 @@ int main(int argc, char *argv[])
 		td.kvc();
 		double kvc_time =  (double)(clock() - kvc_begin)/ CLOCKS_PER_SEC;
 		//cout << "KVC: " << kvc_time << endl; 
-		cout<<"all ch time: "<< (kvc_time + redu_time) <<endl;
+		cout<<"BN-Graph Construction time: "<< (kvc_time + redu_time) <<" s" <<endl;
 
 		//cout << "MakeIndex+reduce time: " << (double)(clock() - start) / CLOCKS_PER_SEC << endl;
 		//td.cntSize();
