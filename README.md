@@ -58,7 +58,7 @@ Note: In our experiments, all deleted objects (inserted objects) are valid. All 
 ### Test
 * Preprocess raw graph data from [DIMACS](http://www.diag.uniroma1.it/~challenge9/download.shtml) <br>
   `./pre oridata tardata` <br>
-  eg: `./pre /data/NY-road-d.NY.gr /data/NY.data` <br>
+  eg: `./pre data/NY-road-d.NY.gr data/NY.data` <br>
   
 * construct neighbor bridge graph <br>
   `./bng data/NY.data data/NY.idx` 
