@@ -16,6 +16,7 @@ There are five files in the `data` folder: <br>
 * `NY.data` stores the whole graph data. Please refer to below format: <br>
 
   ```
+  # sample data
   6  6     (there are total 6 vertices and 6 edges) 
   1  2  8  (an edge between vertex 1 and vertex 2 with the distance of 8)
   1  3  2
