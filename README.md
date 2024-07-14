@@ -13,7 +13,7 @@ All the datasets in this paper can be downloaded from [DIMACS](http://www.diag.u
 ### Preliminary
 There are five files in the `data` folder: <br>
  
-* `NY.data` stores the whole graph data. Please refer to below format with sample data: <br>
+* `NY.data` stores the whole graph data. Please refer to the format below, including sample data: <br>
 
   ```
   6  6     (there are total 6 vertices and 6 edges) 
