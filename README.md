@@ -28,7 +28,7 @@ There are five files in the `data` folder: <br>
   1 3  (a query: return top 3 nearest neighbors for query vertex 1)
   2 2
   3 4
-* NY.object stores all obejcts. A sample data for NY.object contians the candidate object set, formatted as follows: <br>
+* NY.object stores all obejcts. A sample data for NY.object contians obejcts in the candidate object set, formatted as follows: <br>
   ```
   4  (there are total 4 objects in the candidate object set)
   1  (vertex 1 belongs to the candidate object set)
