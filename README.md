@@ -78,6 +78,6 @@ Note: In our experiments, all deleted objects (inserted objects) are valid. All 
   * objset: the file path to the object file
   * -X: '-q' denotes to query, '-u' denotes to update objects
   * qOru: the file path to queries document or the path to updates doc.
-  * alg: choose a knn-index construction algo, 'pri' represents our primary bottom-up computing-sharing algorithm, $KNN-Index-Con(G,\pi,M)$ (alg 2 in our paper), 'opt' represents our optimized bidirectional construction algorihtm, $KNN-Index-Con^+(G,\pi,M)$ (alg 3 in our paper).
+  * alg: choose a knn-index construction algo, 'pri' represents our primary bottom-up computing-sharing algorithm (alg 2 in our paper), 'opt' represents our optimized bidirectional construction algorihtm (alg 3 in our paper).
   * topk: the paramter for $k$ in the top-$k$ nearesr neighbor search 
 
