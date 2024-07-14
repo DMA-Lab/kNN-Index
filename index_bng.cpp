@@ -121,12 +121,9 @@ public:
 	int heightMax;
 
 	vector<int> vertexOrder;
-	//, 
-	vector<int> root_vertexes;
 
 	vector<Node> tnodes;
 	int vorder = 0;
-	//int treewidth = 0;
 	
 	void reduction(){
 		vector<vector<int>> degree2nodeQ; //degree->a list of vertex of this degree
@@ -227,45 +224,9 @@ public:
 					if (p.first < mindegree) mindegree = p.first;
 				}
 			}
-			//cout<<"(edges, vert): ";
-			//for (unsigned int i = 0; i < tnodes[vid].vert.size(); ++i) {
-			//	tnodes[vid].edges.insert(tnodes[vid].vert[i],tnodes[vid].VL[i]);
-			//	cout<<"("<<tnodes[vid].edges.get_with_idx(i).first<<", "<<tnodes[vid].vert[i]<<")";
-			//}cout<<endl;
-			/*
-			cout<<"(2edges, vert): ";
-			auto& e = tnodes[vid].edges;
-			for (unsigned int i = e.iterator(); e.has_next(i); e.next(i)) {
-			//for (unsigned int i = 0; i < tnodes[vid].vert.size(); i++) {
-				cout<<"("<<i<<", "<<tnodes[vid].edges.get_with_idx(i).first<<", "<<tnodes[vid].vert[i]<<")";
-			}cout<<endl;cout<<endl;*/
-			/*
-			if (tnodes[vid].vert.size() == 0) {
-				root_vertexes.push_back(vid);
-			}*/
 		}
-
-		/*
-		int root_cnt =0;
-		for (auto &l1:degree2nodeQ) {//collect remaining shortcuts, as root
-			root_cnt += l1.size();
-			for (int &vid:l1) {
-				root_vertexes.push_back(vid);
-				koala::my_openadd_hashmap<unsigned int> &v = shortcuts[vid];
-			  	for (unsigned int i = v.iterator(); v.has_next(i); v.next(i)) {
-					if (vertexOrder[v.get_with_idx(i).first]==-1) {
-					  	tnodes[vid].edges.insert(v.get_with_idx(i));
-					}
-			    }
-			}
-		}
-		//for(int i=0;i<root_vertexes.size();i++) cout<<root_vertexes[i]<<endl;
-		cout<<"root_vertexes.size(): "<<root_vertexes.size()<<endl;
-		cout<<"there are still "<< root_cnt <<" root vertexes not reduced yet "<< endl;*/
 	}
 
-	int root = 0;
-	
 	inline unsigned int dist(int s, int t) {
 		if (s == t) return 0;
 		else if (vertexOrder[s] < vertexOrder[t])
@@ -331,10 +292,10 @@ public:
 			return;
 		}
 		int x = a.size();
-		cout<<"x: "<<x<<endl;
+		//cout<<"x: "<<x<<endl;
 		fwrite(&x, SIZEOFINT, 1, fout);
 		for (int i = 0; i < x; i++){
-			cout<<"a["<<i<<"]: "<<a[i]<<endl;
+			//cout<<"a["<<i<<"]: "<<a[i]<<endl;
 			fwrite(&a[i], SIZEOFINT, 1, fout);
 		}
 		
@@ -345,20 +306,12 @@ public:
 		printIntVector(ord);
 		printIntVector(vertexOrder);
 		for(int i = 0;i<G.n;++i){
-			cout<<"ord: "<< ord[i]<<endl;
-			//fwrite(&i, SIZEOFINT, 1, fout); //id
-			cout<<"kpv: "<<endl;
 			printIntVector(tnodes[ord[i]].kpv);
-			cout<<"kpvd: "<<endl;
 			printIntVector(tnodes[ord[i]].kpvd);
-			cout<<"kfv: "<<endl;
 			tnodes[ord[i]].kfv.push_back(ord[i]);
 			printIntVector(tnodes[ord[i]].kfv);
-			cout<<"kfvd: "<<endl;
-			//tnodes[ord[i]].kfvd.push_back(0);
 			printIntVector(tnodes[ord[i]].kfvd);
 		}
-		cout<<endl;
 	}
     
 	int ug_size(int p){
