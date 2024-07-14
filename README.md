@@ -35,12 +35,12 @@ There are five txt files in the 'data/test' folder: <br>
   3
   5
   6
-* A sample data for delete.txt contains objects deleted from the candidate object set, shown as follows: <>
+* A sample data for deletedObjects.txt contains objects deleted from the candidate object set, shown as follows: 
   ```
   2  (there are 2 objects, will be deleted from the set)
   3  (vertex 3 will be deleted from the candidate object set)
   5
-* A sample data for insert.txt contains objects inserted into the candidate object set, shown as follows: <>
+* A sample data for insertedObjects.txt contains objects inserted into the candidate object set, shown as follows:
   ```
   1  (there are 1 objects, will be inserted into the set)
   2  (vertex 2 will be inserted into the candidate object set)
