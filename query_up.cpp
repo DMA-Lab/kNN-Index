@@ -594,7 +594,7 @@ int M_K;
 
     
 	void update_setting(int n){
-		//compute_object_number();
+		
 		curup_dist = (int*)malloc(sizeof(int) * (n + 1));
 		curup_affect = (int*)malloc(sizeof(int) * (n + 1));
 		curup_stamp = 0;
@@ -930,27 +930,6 @@ int M_K;
 		}
 	}
 
-	// need to check
-    void traversal(int p){
-        int x = uniqueVertex[p];
-        if (is_current_object[x] == 1)
-            object_number[p]++;
-		/*for (int i = 0; i < chSize[p]; i++){
-			object_number[p] += object_number[ch[p][i]];
-    	}*/
-		//cout<<x<<" object_number[p]: "<< object_number[p]<<endl;
-    }
-	
-    void compute_object_number(){
-		//初始化 object_number
-        object_number.resize(n + 1);
-        for (int i = 0; i <= n; i++)
-            object_number[i] = 0;
-		for(int i=n-1;i>=0;i--){
-			traversal(i);
-		}
-    }
-	
 	vector<pair<int,int>> query(int x, int top_k){
 		vector<pair<int,int>> result; result.clear();
 		int p = belong[x];
