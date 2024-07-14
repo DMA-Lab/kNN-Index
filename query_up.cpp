@@ -1073,7 +1073,7 @@ int main(int argc, char *argv[]){
 	knn.initialize_object_ori();
 
 	double end_time = GetTime();	
-    printf("object initialization time: %.6lf s\n", (end_time - start_time) );
+    printf("KNN-Index Construction time: %.6lf s\n", (end_time - start_time) );
 
 	//----------------------query------------------------------
 	
