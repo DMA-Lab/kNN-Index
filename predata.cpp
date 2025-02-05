@@ -10,7 +10,6 @@ char line[LEN];
 using namespace std;
 
 int main(int argc, char *argv[]) {
-	//cout << argv[1] << " " << argv[2] << endl;
 	FILE *f = fopen(argv[1], "r");
 	if (!f) {
 		printf("file %s not found.", argv[1]);
@@ -45,11 +44,7 @@ int main(int argc, char *argv[]) {
 				assert(os == t && ot == s && ow == w);
 			}
 			first = !first;
-//			printf("<%d,%d,%d>\n", s, t, w);
 		} 
-		//else {
-		//	printf("[%s]\n", line);
-		//}
 	}
 	mydata.close();
 	return 0;
