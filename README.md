@@ -30,7 +30,7 @@ There are five files in the `data` folder: <br>
   1 3  (a query: return top 3 nearest neighbors for query vertex 1)
   2 2
   3 4
-* `NY.object` stores all obejcts in the candidate set.  Please refer to the format below, including sample data: <br>
+* `NY.object` stores all objects in the candidate set.  Please refer to the format below, including sample data: <br>
   ```
   4  (there are total 4 objects in the candidate object set)
   1  (vertex 1 belongs to the candidate object set)
